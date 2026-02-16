@@ -2,7 +2,17 @@ using CleanArchitectureTemplate.Application;
 using CleanArchitectureTemplate.Infrastructure;
 using CleanArchitectureTemplate.WebApi.Endpoints.ToDos;
 
+using Serilog;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((context, services, loggerConfiguration) =>
+{
+    loggerConfiguration
+        .ReadFrom.Configuration(context.Configuration)
+        .ReadFrom.Services(services)
+        .Enrich.FromLogContext();
+});
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -12,9 +22,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddProblemDetails();
 
+builder.Services.AddHealthChecks();
+
 var app = builder.Build();
 
 app.UseExceptionHandler();
+
+app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 
@@ -42,7 +56,17 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapGet("/", () => Results.Ok(new { status = "ok" }));
+app.MapHealthChecks("/health");
+app.MapHealthChecks("/health/ready");
+
 app.MapCreateToDo();
 
-await app.RunAsync();
+try
+{
+    await app.RunAsync();
+}
+finally
+{
+    await Log.CloseAndFlushAsync();
+}
 
