@@ -1,0 +1,13 @@
+@CleanArchitectureTemplate.WebApi_HostAddress = http://localhost:5173
+
+#if (EnableOpenAPI)
+GET {{CleanArchitectureTemplate.WebApi_HostAddress}}/openapi/v1.json
+Accept: application/json
+
+###
+#endif
+
+GET {{CleanArchitectureTemplate.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

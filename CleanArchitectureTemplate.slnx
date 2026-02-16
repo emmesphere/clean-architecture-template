@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/CleanArchitectureTemplate.Application/CleanArchitectureTemplate.Application.csproj" />
+    <Project Path="src/CleanArchitectureTemplate.BuildingBlocks/CleanArchitectureTemplate.BuildingBlocks.csproj" />
+    <Project Path="src/CleanArchitectureTemplate.Domain/CleanArchitectureTemplate.Domain.csproj" />
+    <Project Path="src/CleanArchitectureTemplate.Infrastructure/CleanArchitectureTemplate.Infrastructure.csproj" />
+    <Project Path="src/CleanArchitectureTemplate.WebApi/CleanArchitectureTemplate.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CleanArchitectureTemplate.ArchitectureTests/CleanArchitectureTemplate.ArchitectureTests.csproj" />
+    <Project Path="tests/CleanArchitectureTemplate.BuildingBlocks.Tests/CleanArchitectureTemplate.BuildingBlocks.Tests.csproj" Id="c0ae88cc-0c1b-4a09-81bb-dd2710ec670b" />
+    <Project Path="tests/CleanArchitectureTemplate.WebApi.Tests/CleanArchitectureTemplate.WebApi.Tests.csproj" Id="ce9c9517-97ec-499e-b846-9ddef775ca7a" />
+  </Folder>
+</Solution>
