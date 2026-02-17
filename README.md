@@ -1,52 +1,39 @@
 # Clean Architecture Template (.NET 8)
 
-Template base para APIs em .NET 8 utilizando:
+A minimal, production-ready Clean Architecture template for .NET 8 APIs.
 
--   Clean Architecture
--   DDD (Aggregate Root, Value Object, Domain Events)
+## Features
+
+-   Clean Architecture (Domain, Application, Infrastructure, WebApi)
+-   DDD building blocks (AggregateRoot, ValueObject, DomainEvents)
 -   Minimal APIs
 -   Serilog (Console + Seq)
 -   Health Checks
--   EF Core (configurável)
--   JWT (configurável)
--   Docker / Podman
+-   EF Core (configurable)
+-   Docker / Podman support
 -   GitHub Actions CI
--   Testes (Unit, Architecture, WebApi)
-
-Este template foi projetado para ser versátil: Pode ser usado tanto para
-um projeto simples (ex: To-Do List) quanto para um microservice mais
-complexo.
+-   Unit, Integration and Architecture Tests
 
 ------------------------------------------------------------------------
 
-## 📂 Estrutura da solução
+## 📂 Project Structure
 
     src/
-     ├── CleanArchitectureTemplate.Domain
-     ├── CleanArchitectureTemplate.Application
-     ├── CleanArchitectureTemplate.Infrastructure
-     ├── CleanArchitectureTemplate.WebApi
-     └── CleanArchitectureTemplate.BuildingBlocks
+     ├── Domain
+     ├── Application
+     ├── Infrastructure
+     ├── WebApi
+     └── BuildingBlocks
 
     tests/
-     ├── CleanArchitectureTemplate.Domain.Tests
-     ├── CleanArchitectureTemplate.Application.Tests
-     ├── CleanArchitectureTemplate.WebApi.Tests
-     └── CleanArchitectureTemplate.ArchitectureTests
-
-### Camadas
-
--   **Domain** → Entidades, ValueObjects, AggregateRoot, DomainEvents
--   **Application** → Commands, Handlers, Use Cases
--   **Infrastructure** → EF Core, integrações externas
--   **WebApi** → Endpoints, Middlewares, Configuração
--   **BuildingBlocks** → Result, Error, Base abstractions
+     ├── Domain.Tests
+     ├── Application.Tests
+     ├── WebApi.Tests
+     └── ArchitectureTests
 
 ------------------------------------------------------------------------
 
-## 🚀 Como rodar localmente
-
-### 1️⃣ Rodar via .NET CLI
+## 🚀 Run Locally
 
 ``` bash
 dotnet restore
@@ -54,117 +41,89 @@ dotnet build
 dotnet run --project src/CleanArchitectureTemplate.WebApi
 ```
 
-Health check:
-
-    GET http://localhost:<porta>/health
-
 ------------------------------------------------------------------------
 
-### 2️⃣ Rodar com Docker / Podman
+## 🐋 Run with Docker / Podman
 
 ``` bash
 podman compose up --build
 ```
 
-ou
-
-``` bash
-docker compose up --build
-```
-
-API:
-
-    http://localhost:8080
-
-Health:
-
-    http://localhost:8080/health
-
-Seq:
-
-    http://localhost:5341
+API: http://localhost:8080\
+Seq: http://localhost:5341
 
 ------------------------------------------------------------------------
 
-## 📊 Logging (Serilog)
+## 📊 Logging
 
--   Console sempre habilitado
--   Seq habilitado em Development
--   Configuração via `appsettings.json` ou variáveis de ambiente
-
-	http://localhost:5341
+-   Console enabled by default
+-   Seq enabled in Development
+-   Configurable via `appsettings.json` or environment variables
 
 ------------------------------------------------------------------------
 
-## ❤️ Health Checks
-
-Endpoints disponíveis:
+## ❤️ Health Endpoints
 
     /health
     /health/ready
 
-Podem ser estendidos para incluir:
-
--   Banco de dados
--   Redis
--   RabbitMQ
--   Serviços externos
-
 ------------------------------------------------------------------------
 
-## 🧪 Testes
-
-Rodar todos os testes:
+## 🧪 Tests
 
 ``` bash
 dotnet test
 ```
 
-Tipos de testes:
+------------------------------------------------------------------------
 
--   Unit tests (Domain / Application)
--   Integration tests (WebApi)
--   Architecture tests (Layer validation)
+# Using as a .NET Template
+
+This repository is configured as a `dotnet new` template.
+
+### 1️⃣ Install locally
+
+From the repository root:
+
+``` bash
+dotnet new install .
+```
+
+### 2️⃣ Create a new project
+
+``` bash
+dotnet new cleanarch -n MyProject
+```
+
+This will:
+
+-   Replace all occurrences of `CleanArchitectureTemplate`
+-   Generate a new solution with your project name
+-   Preserve the full Clean Architecture structure
+
+### 3️⃣ Uninstall (if needed)
+
+``` bash
+dotnet new uninstall CleanArchitectureTemplate
+```
 
 ------------------------------------------------------------------------
 
 ## 🛠 CI (GitHub Actions)
 
-Pipeline executa automaticamente:
+Pipeline runs automatically:
 
 -   Restore
 -   Build (Release)
--   Testes
+-   Tests
 
 Arquivo:
 
     .github/workflows/ci.yml
 
-------------------------------------------------------------------------
-
-## 🧱 Exemplo incluído
-
-O template contém um exemplo mínimo de domínio:
-
--   1 Aggregate Root
--   1 Value Object
--   1 Regra de negócio
--   1 Command + Handler
--   1 Endpoint minimal API
--   Persistência configurável
 
 ------------------------------------------------------------------------
 
-## 🔐 Segurança
-
-O template já inclui:
-
--   Headers de segurança básicos
--   HTTPS redirection
--   HSTS (produção)
-
-------------------------------------------------------------------------
-
-## 📜 Licença
+## 📜 License
 
 MIT

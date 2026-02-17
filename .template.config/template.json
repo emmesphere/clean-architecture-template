@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Emmanuel Gomes",
+  "classifications": [ "Web", "API", "Clean Architecture" ],
+  "identity": "CleanArchitectureTemplate",
+  "name": "Clean Architecture Template (.NET 8)",
+  "shortName": "cleanarch",
+  "sourceName": "CleanArchitectureTemplate",
+  "preferNameDirectory": true,
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  }
+}
